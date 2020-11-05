@@ -1,0 +1,123 @@
+/*body {
+    display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+}
+
+main {
+      flex: 1 0 auto;
+}*/
+
+.logoBBVAimg{
+    margin-top: -11px;
+    width: 150px;
+  }
+  
+  .logoFooterBBVAimg{
+    width: 164px; 
+  }
+  
+  .logoNicetoimg{
+    margin-top: 6px;
+    width: 180px;
+  }
+  
+  .navCus{
+    background-color: #072146;
+    height: 60px;
+  }
+  
+  .divNavCus{
+    height: 60px;
+  }
+  
+  .footerCus{
+    background-color: #072146;
+    padding-top: 0px;
+  }
+  
+  .imgBanner { 
+    max-width: 100% !important; 
+    width: 100% !important; 
+    height: auto !important; 
+  }  
+  
+  .coberturaTitulo{
+    font-size: 22px;
+    color:#009ed5;
+    font-weight: bold;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    padding-left: 680px;
+  }
+  
+  .coberturaTexto{
+    font-size: 20px;
+    color:#005aa1;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  }
+  
+  .coberturaMonto{
+    font-size: 18px;
+    color:#009ed5;
+    font-weight: bold;
+  }
+  
+  .coberturaBoton{
+    background-color: #2ccbce !important;  
+    color:white;
+  }
+
+  .coberturaBoton2{
+    background-color:white !important;  
+    color: #2ccbce;
+  }
+  
+  .footerTexto{
+    color:white;
+    margin: 0;
+    font-size: 10px;
+    padding-top: 15px;
+  }
+  
+  .planMonto{
+    color:white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .planMonto2{
+    color:black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  
+  .planMes{
+    color:#005aa1;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 8px;
+    padding: inherit!important;
+  }
+  
+  .planPrecioTexto{
+    color:#005aa1;
+    font-size: 10px;
+  }
+  
+  .aclaraciones{
+      color:#005aa1;
+      font-size: 11px;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .planColumna{
+          margin-bottom: 60px;
+      }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .imgBanner {
+      content:url("//bbvdfs/dfs/SEGUROS/Aplicaciones/Desarrollo/OBJETO/Corporativo/Desarrollo/BBVA/gastongz/workspace_desa/BBVACOMMON_MAIN/html/images/micrositios/niceto/imagen_cel.png");
+    }
+  }
