@@ -92,7 +92,7 @@ export class MicroParametriaComponent implements OnInit {
   }
 
   public login() {
-    this.usuarioService.loginPromise().then((data: any) => {
+    this.usuarioService.login().then((data: any) => {
       console.log(data);
       let tokenLogin = data.value;
       console.log(tokenLogin);
