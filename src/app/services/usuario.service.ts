@@ -10,28 +10,30 @@ import { error } from 'protractor';
 })
 export class UsuariosService {
   
-  //private access_token = 'c84bc575-d650-4b79-8cdc-35b2cc42b1d8';
   private access_token = environment.TOKEN;
 
   constructor(protected http : HttpClient) { }
 
-  public loginPromise() : Promise<any> {    
+  public login() : Promise<any> {    
     let httpHeaders = new HttpHeaders({
-      'Authorization':'Basic YmJ2YV9jOTIwMzU2OWU5ZjZlNzY5ZGZjOTk5Y2FkMjg5NDk4NzpmNjA3YzZmZGU4MTRjMWEyM2Y0MjQ1MTMxZWUwYzlkNQ==',
+      //'Authorization':'Basic YmJ2YV9jOTIwMzU2OWU5ZjZlNzY5ZGZjOTk5Y2FkMjg5NDk4NzpmNjA3YzZmZGU4MTRjMWEyM2Y0MjQ1MTMxZWUwYzlkNQ==',
       'Content-Type':'application/json'
     });
     let httpParams = new HttpParams()
-      .set('grant_type' , 'password')
-      .set('username' , 'german.derosa.contractor@bbva.com')
-      .set('password' , '1234567q');
+      .set('username' , 'cliente1')
+      .set('password' , 'cliente1');
     let options = {
       headers : httpHeaders,
       params : httpParams
     }
+    let body = {
+      username: 'cliente1',
+      password: 'cliente1'
+    }
 
     return new Promise((resolve, reject) =>{
       
-      this.http.post(environment.API_ENDPOINT + '/oauth/token.do', {responseType: 'json'}, options).subscribe(
+      this.http.post(environment.API_ENDPOINT + '/login', body).subscribe(
         (response: any) => {
           console.log(response);
           resolve(response);
