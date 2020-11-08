@@ -4,17 +4,13 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MicroParametriaComponent } from './micro-parametria/micro-parametria.component';
-import { MicroCompraComponent } from './micro-compra/micro-compra.component';
-import { MicroCompraSeparadosComponent } from './micro-compra-separados/micro-compra-separados.component';
+import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { UsuariosService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MicroParametriaComponent,
-    MicroCompraComponent,
-    MicroCompraSeparadosComponent
+    AplicacionComponent
   ],
   imports: [
     BrowserModule,

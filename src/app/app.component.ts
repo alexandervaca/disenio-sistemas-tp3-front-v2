@@ -6,9 +6,6 @@ import { Component, NgModule } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Micrositio BBVA Parametr&iacute;a';
+  title = '.::Superbuy::.';
 
-  mostrarAlert(event){
-    alert(event);
-  }
 }
