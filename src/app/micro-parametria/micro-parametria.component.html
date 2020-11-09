@@ -46,13 +46,6 @@
             <tbody>
 
               <tr *ngFor="let parametria of parametriaLegajo.parametrias">
-                <!--<td scope="row">
-                  <select class="coberturaTexto">
-                    <option class="coberturaTexto"></option>
-                    <option *ngFor="let o of orden" class="coberturaTexto" value="{{o}}" [selected]="parametria.orden == o"
-                      (change)="parametria.orden = o" >{{o}}</option>
-                  </select>
-                </td>-->
                 <td>{{ parametria.descripcionProducto }}</td>
                 <td><input type="checkbox" [checked]="parametria.habilitado" (change)="parametria.habilitado = !parametria.habilitado"
                   *ngIf="legajoSelected != ''" /></td>

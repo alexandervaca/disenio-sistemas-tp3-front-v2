@@ -22,7 +22,7 @@
                               <span className="arrow_carrot-down"></span>
                           </div>
                           <div className="header__top__right__auth">
-                              <a href="#"><i className="fa fa-user"></i> Iniciar sesión</a>
+                              <a href="#"><i className="fa fa-user"></i> Iniciar sesi&oacute;n</a>
                           </div>
                       </div>
                   </div>
@@ -39,9 +39,9 @@
               <div className="col-lg-6">
                   <nav className="header__menu">
                       <ul>
-                          <li className="active"><a href="./index.html">Inicio</a></li>
-                          <li><a href="./shop-grid.html">Tienda</a></li>
-                          <li><a href="./contact.html">Contacto</a></li>
+                          <li><a href="#">Inicio</a></li>
+                          <li><a href="#">Tienda</a></li>
+                          <li><a href="#">Contacto</a></li>
                       </ul>
                   </nav>
               </div>
@@ -67,17 +67,10 @@
               <div className="hero__categories">
                   <div className="hero__categories__all">
                       <i className="fa fa-bars"></i>
-                      <span>Todas las categorías</span>
+                      <span>Todas las categor&iacute;as</span>
                   </div>
                   <ul>
-                      <li><a href="#">Alimentos</a></li>
-                      <li><a href="#">Ropa</a></li>
-                      <li><a href="#">Electrónica</a></li>
-                      <li><a href="#">Mundo Bebés</a></li>
-                      <li><a href="#">Mascotas</a></li>
-                      <li><a href="#">Enlatados</a></li>
-                      <li><a href="#">Bebidas</a></li>
-                      <li><a href="#">Carnes</a></li>
+                      <li *ngFor="let categoria of categorias"><a href="#">{{ categoria.descripcion }}</a></li>
                   </ul>
               </div>
           </div>
