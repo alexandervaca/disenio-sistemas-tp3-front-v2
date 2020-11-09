@@ -1,4 +1,4 @@
-/*table{
+table{
     height: 100%;
     width: 100%;
     justify-content: center;
@@ -11,7 +11,8 @@
     border-bottom: 1px solid #ECEAEA;
     border-right: 1px solid #ECEAEA;
     align-content: center;
-    margin-left: 0px;
+	margin-left: 0px;
+	margin-top: 1%;
 }
 
 td {
@@ -28,7 +29,7 @@ td {
     transition: all, 0.3s;
 
     cursor: pointer;
-}*/
+}
 
 /******************************************************************
   Template Name: Ogani

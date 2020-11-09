@@ -1,5 +1,12 @@
-<table>
-    <tr *ngFor="let proveedor of proveedores" class="row">
-        <td (click)="irAProductos(proveedor.idUsuario)">{{ proveedor.nombre }}</td>
-    </tr>
-</table>
+<section class="product spad">
+    <div class="container">
+        <div style="width: 100%; height: 100%;">
+            <h3 style="margin-left: 43%;">Proveedores</h3>
+            <table>
+                <tr *ngFor="let proveedor of proveedores" class="row">
+                    <td (click)="irAProductos(proveedor.idUsuario)">{{ proveedor.nombre }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
