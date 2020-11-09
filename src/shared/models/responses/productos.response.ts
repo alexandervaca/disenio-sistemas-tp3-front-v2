@@ -1,5 +1,5 @@
 import { Producto } from '../domain/producto';
 
-export class ProductosResponse {
-    productos:Producto[] = [];
+export class ProductosResponse extends Response {
+    productos: Producto[];
 }

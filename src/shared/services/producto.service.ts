@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient,  HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import { Producto } from '../../shared/models/domain/producto';
 import { ProductosResponse } from '../../shared/models/responses/productos.response';
 import { ProductoResponse } from '../../shared/models/responses/producto.response';
+import { map } from 'rxjs/operators';
+import { RequestCrearProductoBody } from '../models/request/crear.producto.request';
+import { RequestModificarProductoBody } from '../models/request/modificar.producto.request';
 
 @Injectable({
   providedIn: 'root'
@@ -24,103 +26,78 @@ export class ProductosService {
       headers: httpHeaders
     }
 
-    this.http.get(environment.API_ENDPOINT + '/productos', {responseType: 'json'}).subscribe(
-      data=>{
-        console.log(data);      
-        return data;
-      },
-      err =>{
-        console.log(err);
-        return err;
-      });
-    return new Observable<ProductosResponse>();
+    return this.http
+      .get<ProductosResponse>(environment.API_ENDPOINT + '/productos', {...options, observe: 'response'})
+      .pipe(
+        map((response: HttpResponse<ProductosResponse>) => response.body));
   }
 
   public getProducto(idProducto: number) : Observable<ProductoResponse> {
-
-    this.http.get(environment.API_ENDPOINT + '/productos/' + idProducto, {responseType: 'json'})
-    .subscribe(
-      data=>{
-        console.log(data);      
-      return data;
-      },
-      err =>{
-        console.log(err);
-        return err;
-      });
-
-    return new Observable<ProductoResponse>();
-  }
-
-  public crearProducto(producto: Producto) : Observable<ProductoResponse> {
+    let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    let productoReq = {
-      descripcion: producto.descProducto,
-      precio: producto.precio,
-      stock: producto.stock,
-      imagen: producto.imagen,
-      idProveedor: producto.idProveedor
+    let options = {
+      headers: httpHeaders
     }
+
+    return this.http
+      .get<ProductoResponse>(environment.API_ENDPOINT + '/productos/' + idProducto, {...options, observe: 'response'})
+      .pipe(
+        map((response: HttpResponse<ProductoResponse>) => response.body));
+  }
+
+  public crearProducto(descripcion: string, precio: number, stock: number, imagen: string, idProveedor: number) : Observable<Response> {
+    let token = localStorage.getItem('token');
+
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let productoReq = new RequestCrearProductoBody(descripcion, precio, stock, imagen, idProveedor);
 
     let options = {
       headers: httpHeaders
     }
 
-    this.http.post(environment.API_ENDPOINT + '/productos', productoReq, {...options, observe: 'response'})
-      .subscribe(
-        data=>{
-          console.log(data);      
-        return data;
-        },
-        err =>{
-          console.log(err);
-          return err;
-        });
-
-    return new Observable<ProductoResponse>();
+    return this.http.post<Response>(environment.API_ENDPOINT + '/productos', productoReq, {...options, observe: 'response'})
+    .pipe(
+      map((response: HttpResponse<Response>) => response.body));
   }
 
-  public modificarProducto(producto: Producto) : Observable<any> {
+  public modificarProducto(idProducto: number, descripcion: string, precio: number, stock: number, imagen: string) : Observable<Response> {
+    let token = localStorage.getItem('token');
 
-    let productoReq = {
-      idProducto: producto.idProducto,
-      descripcion: producto.descProducto,
-      precio: producto.precio,
-      stock: producto.stock,
-      imagen: producto.imagen
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let options = {
+      headers: httpHeaders
     }
 
-    this.http.put(environment.API_ENDPOINT + '/productos', productoReq)
-      .subscribe(
-        data=>{
-          console.log(data);      
-        return data;
-        },
-        err =>{
-          console.log(err);
-          return err;
-        });
+    let productoReq = new RequestModificarProductoBody(idProducto, descripcion, precio, stock, imagen);
 
-    return new Observable<any>();
+    return this.http.put<Response>(environment.API_ENDPOINT + '/productos', productoReq, {...options, observe: 'response'})
+    .pipe(
+      map((response: HttpResponse<Response>) => response.body));
   }
 
-  public eliminarProducto(idProducto: number) : Observable<any> {
+  public eliminarProducto(idProducto: number) : Observable<Response> {
+    let token = localStorage.getItem('token');
 
-    this.http.delete(environment.API_ENDPOINT + '/productos/' + idProducto)
-      .subscribe(
-        data=>{
-          console.log(data);      
-        return data;
-        },
-        err =>{
-          console.log(err);
-          return err;
-        });
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
-    return new Observable<any>();
+    let options = {
+      headers: httpHeaders
+    }
+
+    return this.http.delete<Response>(environment.API_ENDPOINT + '/productos/' + idProducto, {...options, observe: 'response'})
+    .pipe(
+      map((response: HttpResponse<Response>) => response.body));
   }
 }

@@ -1,8 +1,5 @@
 import { Categoria } from '../domain/categoria';
 
-export class CategoriasResponse {
-    status: string;
-    code: string;
-    date: Date;
+export class CategoriasResponse extends Response {
     categorias: Categoria[];
 }

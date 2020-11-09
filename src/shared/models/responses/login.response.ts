@@ -1,7 +1,4 @@
-export class LoginResponse {
-    status: string;
-    code: string;
-    date: Date;
+export class LoginResponse extends Response {
     token: string;
     permiso: string;
 }
