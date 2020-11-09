@@ -1,0 +1,49 @@
+<section className="hero">
+  <div className="container">
+      <div className="row">
+          <div className="col-lg-3">
+              <div className="hero__categories">
+                  <div className="hero__categories__all">
+                      <i className="fa fa-bars"></i>
+                      <span>Todas las categor&iacute;as</span>
+                  </div>
+                  <ul>
+                      <li *ngFor="let categoria of categorias"><a href="#">{{ categoria.descripcion }}</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div className="col-lg-9">
+              <div className="hero__search">
+                  <div className="hero__search__form">
+                      <form action="#">
+                          <div className="hero__search__categories">
+                              Categor&iacute;as
+                              <span className="arrow_carrot-down"></span>
+                          </div>
+                          <input type="text" placeholder="Búsqueda"/>
+                          <button type="submit" className="site-btn">BUSCAR</button>
+                      </form>
+                  </div>
+                  <div className="hero__search__phone">
+                      <div className="hero__search__phone__icon">
+                          <i className="fa fa-phone"></i>
+                      </div>
+                      <div className="hero__search__phone__text">
+                          <h5>+54 11-2346-2346</h5>
+                          <span>soporte las 24hs</span>
+                      </div>
+                  </div>
+              </div>
+              <div className="hero__item set-bg" img="/assets/img/hero/banner2.jpg">
+              <a href="#"><img src="/assets/img/hero/banner2.jpg" alt=""/></a>
+                  <div className="hero__text">
+                      <span>ALIMENTOS FRESCOS</span>
+                      <h2>Todos los miércoles <br />-30%</h2>
+                      <p>Sin límite de cantidad y envío gratis</p>
+                      <a href="#" className="primary-btn">COMPRE AHORA</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

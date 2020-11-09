@@ -3,13 +3,11 @@ export class RequestCrearProductoBody {
     precio: number;
     stock: number;
     imagen: string;
-    idProveedor: number;
 
-    constructor(descripcion: string, precio: number, stock: number, imagen: string, idProveedor: number) {
+    constructor(descripcion: string, precio: number, stock: number, imagen: string) {
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
         this.imagen = imagen;
-        this.idProveedor = idProveedor;
     }
 }

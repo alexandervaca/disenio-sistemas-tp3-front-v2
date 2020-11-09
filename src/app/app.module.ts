@@ -9,13 +9,21 @@ import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AllCategoriesComponent } from './all-categories/all-categories.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AplicacionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    FooterComponent,
+    AllCategoriesComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,8 @@ export class ProductosService {
     let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     });
 
     let options = {
@@ -36,7 +37,8 @@ export class ProductosService {
     let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     });
 
     let options = {
@@ -49,14 +51,15 @@ export class ProductosService {
         map((response: HttpResponse<ProductoResponse>) => response.body));
   }
 
-  public crearProducto(descripcion: string, precio: number, stock: number, imagen: string, idProveedor: number) : Observable<Response> {
+  public crearProducto(descripcion: string, precio: number, stock: number, imagen: string) : Observable<Response> {
     let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     });
 
-    let productoReq = new RequestCrearProductoBody(descripcion, precio, stock, imagen, idProveedor);
+    let productoReq = new RequestCrearProductoBody(descripcion, precio, stock, imagen);
 
     let options = {
       headers: httpHeaders
@@ -71,7 +74,8 @@ export class ProductosService {
     let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     });
 
     let options = {
@@ -89,7 +93,8 @@ export class ProductosService {
     let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     });
 
     let options = {
