@@ -1,5 +1,5 @@
 import { Producto } from '../modelo/producto';
 
-export class ProductosResponse {
-    lista : Producto[] = [];
+export class ProductoResponse {
+    producto:Producto;
 }

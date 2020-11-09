@@ -5,6 +5,10 @@ import { environment } from '../../environments/environment';
 import { LegajosResponse } from '../modelo/LegajosResponse';
 import { error } from 'protractor';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,8 +31,8 @@ export class UsuariosService {
       params : httpParams
     }
     let body = {
-      username: 'cliente1',
-      password: 'cliente1'
+      username: 'CLIENTE',
+      password: 'CLIENTE'
     }
 
     return new Promise((resolve, reject) =>{
