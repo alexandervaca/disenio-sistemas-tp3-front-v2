@@ -1,0 +1,5 @@
+<table>
+    <tr *ngFor="let proveedor of proveedores" class="row">
+        <td (click)="irAProductos(proveedor.idUsuario)">{{ proveedor.nombre }}</td>
+    </tr>
+</table>

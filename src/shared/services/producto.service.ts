@@ -32,6 +32,23 @@ export class ProductosService {
         map((response: HttpResponse<ProductosResponse>) => response.body));
   }
 
+  public getProductosPorProveedor() : Observable<ProductosResponse> {    
+    let token = localStorage.getItem('token');
+
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let options = {
+      headers: httpHeaders
+    }
+
+    return this.http
+      .get<ProductosResponse>(environment.API_ENDPOINT + '/productos/proveedor', {...options, observe: 'response'})
+      .pipe(
+        map((response: HttpResponse<ProductosResponse>) => response.body));
+  }
+
   public getProducto(idProducto: number) : Observable<ProductoResponse> {
     let token = localStorage.getItem('token');
 

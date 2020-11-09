@@ -64,4 +64,21 @@ export class UsuariosService {
                 map((response: HttpResponse<Response>) => response.body)
               );
   }
+
+  get rol(): string {
+    return localStorage.getItem('permiso') || '';
+  }
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get isLogged(): boolean {
+    return this.token.length > 0 && this.rol.length > 0;
+  }
+
+  cerrarSesion(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('permiso');
+  }
 }

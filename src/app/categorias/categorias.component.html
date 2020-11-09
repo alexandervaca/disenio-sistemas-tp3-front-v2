@@ -1,0 +1,5 @@
+<table>
+    <tr *ngFor="let categoria of categorias" class="row">
+        <td (click)="irAProveedor(categoria.idCategoria)">{{ categoria.descCategoria }}</td>
+    </tr>
+</table>
