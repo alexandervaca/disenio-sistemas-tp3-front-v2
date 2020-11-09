@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'categorias', canActivate: [AuthGuard], component: CategoriasComponent },
       { path: 'proveedores/:idProveedor', canActivate: [AuthGuard], component: ProveedoresComponent },
       { path: 'productos', canActivate: [AuthGuard], component: ProductosComponent },
+      { path: 'productos/:idProveedor', canActivate: [AuthGuard], component: ProductosComponent },
       { path: 'contacto', component: ContactoComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
