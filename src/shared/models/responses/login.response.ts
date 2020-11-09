@@ -3,4 +3,5 @@ export class LoginResponse {
     code: string;
     date: Date;
     token: string;
+    permiso: string;
 }

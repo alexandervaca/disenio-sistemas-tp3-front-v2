@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         elem => { 
           Swal.fire('Exito', "Logín satisfactorio.", 'success');
           localStorage.setItem('token', elem.token);
+          localStorage.setItem('permiso', elem.permiso.replace('[', '').replace(']', ''));
          },
         error => { 
           Swal.fire('Error', "Credenciales inválidas. En caso de persistir el error contacte con un administrador.", 'error');
