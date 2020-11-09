@@ -8,6 +8,10 @@ import { RequestLoginBody } from 'src/shared/models/request/login.request';
 import { Categoria } from 'src/shared/models/domain/categoria';
 import { RequestRegisterBody } from 'src/shared/models/request/register.request';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })

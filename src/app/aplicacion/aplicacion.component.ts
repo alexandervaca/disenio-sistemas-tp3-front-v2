@@ -188,7 +188,7 @@ export class AplicacionComponent implements OnInit {
   }
 
   public buscarProducto(tipoProducto: string) {
-    this.productoService.buscarProducto(tipoProducto);
+    //this.productoService.buscarProducto(tipoProducto);
   }
 
   public parametriasHabilitadas(parametrias: Parametria[]): Parametria[] {
@@ -286,7 +286,7 @@ export class AplicacionComponent implements OnInit {
 
     // Itera los productos para setear el checkbox de los seleccionados
     let descripcionTodos: string = '';
-    this.productosModal.forEach( prod => {
+    /*this.productosModal.forEach( prod => {
       productos.forEach( prod2 => {
         if (prod.codigoProductoGaus == prod2.codigoProductoGaus) {
           prod.seleccionado = prod2.seleccionado;
@@ -295,17 +295,17 @@ export class AplicacionComponent implements OnInit {
           }
         }
       });
-    });
+    });*/
     // Actualiza la descripcion de los productos seleccionados
     parametria.descripcionTodos = descripcionTodos;
   }
 
   public seleccionarProducto(productoSeleccinado: Producto) {
-    this.productosModal.forEach( prod => {
+    /*this.productosModal.forEach( prod => {
       if (prod.codigoProductoGaus == productoSeleccinado.codigoProductoGaus) {
         prod.seleccionado = true;
       }
-    });
+    });*/
   }
 
   public agregarProductosSeleccionados(tipoCoberturaModal: string) {
@@ -320,7 +320,7 @@ export class AplicacionComponent implements OnInit {
       parametriaAux = parametriasAux[0];
     }
 
-    this.productosModal.forEach( prod => {
+    /*this.productosModal.forEach( prod => {
       // Valida que los productos ya agregados y seleccionados sean igual o menor a 3
       if (parametriaAux.productos && parametriaAux.productos.filter( (prod: Producto) => prod.seleccionado == true).length <= 3) {
 
@@ -331,25 +331,17 @@ export class AplicacionComponent implements OnInit {
         if (productosParametriaLegajo) {
           prodAux = productosParametriaLegajo[0];
         }
-        if (prodAux) {
-          prodAux.seleccionado = prod.seleccionado;
-        } else {
-          // Sino, valida si esta seleccionado y lo agrega
-          if (prod.seleccionado) {
-            parametriaAux.productos.push(prod);
-          }
-        }
       } else {
         this.mensajeError = 'No se pueden agregar mas de tres productos.';
       }
-    });
+    });*/
 
     // Actualiza la descripcion de todos los productos de la parametria
-    let productosSeleccionados = this.parametriaModal.productos.filter( (prod) => prod.seleccionado == true);
+    /*let productosSeleccionados = this.parametriaModal.productos.filter( (prod) => prod.seleccionado == true);
     this.parametriaModal.descripcionTodos = '';
     productosSeleccionados.forEach( (prod: Producto) => {
       this.parametriaModal.descripcionTodos += prod.descripcion + ' ' + prod.sumaAsegurada + ' | ';
-    });
+    });*/
     console.log(this.productosModal);
   }
 
@@ -420,17 +412,17 @@ export class AplicacionComponent implements OnInit {
 
   public productosSeleccionados(productos: Producto[]): Producto[] {
     let productosAux = [];
-    productos.forEach( (prod => {
+    /*productos.forEach( (prod => {
       if (prod.seleccionado) {
         productosAux.push(prod);
       }
-    }));
+    }));*/
     return productosAux;
   }
 
   public tieneProductosSeleccionados(productos: Producto[]): boolean {
-    let productosAux = productos.filter( (prod) => prod.seleccionado == true);
-    return productosAux != [] && productosAux.length > 0;
+    //let productosAux = productos.filter( (prod) => prod.seleccionado == true);
+    return false;//productosAux != [] && productosAux.length > 0;
   }
 
   public seleccionarArchivo(event) {

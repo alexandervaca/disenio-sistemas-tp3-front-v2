@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import { ProductosResponse } from '../modelo/productoResponse';
+import { Producto } from '../modelo/producto';
+import { ProductosResponse } from '../modelo/productosResponse';
+import { ProductoResponse } from '../modelo/productoResponse';
+import { CategoriaResponse } from '../modelo/categoriaResponse';
 import { error } from 'protractor';
 
 @Injectable({
@@ -14,20 +17,9 @@ export class ProductosService {
 
   constructor(protected http : HttpClient) { }
 
-  public login() : Observable<any> {    
-    let httpHeaders = new HttpHeaders({
-      'Authorization':'Basic YmJ2YV9jOTIwMzU2OWU5ZjZlNzY5ZGZjOTk5Y2FkMjg5NDk4NzpmNjA3YzZmZGU4MTRjMWEyM2Y0MjQ1MTMxZWUwYzlkNQ==',
-      'Content-Type':'application/json'
-    });
-    let httpParams = new HttpParams()
-      .set('grant_type' , 'password')
-      .set('username' , 'german.derosa.contractor@bbva.com')
-      .set('password' , '1234567q');
-    let options = {
-      headers : httpHeaders,
-      params : httpParams
-    }
-    this.http.post(environment.API_ENDPOINT + '/oauth/token.do', {responseType: 'json'}, options).subscribe(
+  public getCategorias() : Observable<CategoriaResponse> {    
+    
+    this.http.get(environment.API_ENDPOINT + '/categorias', {responseType: 'json'}).subscribe(
       data=>{
         console.log(data);      
         return data;
@@ -36,27 +28,100 @@ export class ProductosService {
         console.log(err);
         return err;
       });
+    return new Observable<CategoriaResponse>();
+  }
+
+  public getProductos() : Observable<ProductosResponse> {    
+    
+    this.http.get(environment.API_ENDPOINT + '/productos', {responseType: 'json'}).subscribe(
+      data=>{
+        console.log(data);      
+        return data;
+      },
+      err =>{
+        console.log(err);
+        return err;
+      });
+    return new Observable<ProductosResponse>();
+  }
+
+  public getProducto(idProducto: number) : Observable<ProductoResponse> {
+
+    this.http.get(environment.API_ENDPOINT + '/productos/' + idProducto, {responseType: 'json'})
+    .subscribe(
+      data=>{
+        console.log(data);      
+      return data;
+      },
+      err =>{
+        console.log(err);
+        return err;
+      });
+
+    return new Observable<ProductoResponse>();
+  }
+
+  public crearProducto(producto: Producto) : Observable<ProductoResponse> {
+
+    let productoReq = {
+      descripcion: producto.descProducto,
+      precio: producto.precio,
+      stock: producto.stock,
+      imagen: producto.imagen,
+      idProveedor: producto.idProveedor
+    }
+
+    this.http.post(environment.API_ENDPOINT + '/productos', productoReq)
+      .subscribe(
+        data=>{
+          console.log(data);      
+        return data;
+        },
+        err =>{
+          console.log(err);
+          return err;
+        });
+
+    return new Observable<ProductoResponse>();
+  }
+
+  public modificarProducto(producto: Producto) : Observable<any> {
+
+    let productoReq = {
+      idProducto: producto.idProducto,
+      descripcion: producto.descProducto,
+      precio: producto.precio,
+      stock: producto.stock,
+      imagen: producto.imagen
+    }
+
+    this.http.put(environment.API_ENDPOINT + '/productos', productoReq)
+      .subscribe(
+        data=>{
+          console.log(data);      
+        return data;
+        },
+        err =>{
+          console.log(err);
+          return err;
+        });
+
     return new Observable<any>();
   }
 
-  /**
-   * Busca productos por tipo
-   * @param searchText 
-   */
-  public buscarProducto(tipoProducto: string) : Promise<ProductosResponse> {
+  public eliminarProducto(idProducto: number) : Observable<any> {
 
-    return new Promise((resolve, reject) =>{
-
-      this.http.get(environment.API_ENDPOINT + '/parametria/obtenerProductos.do?access_token=' + this.access_token + 
-        '&tipoProducto=' + tipoProducto, {responseType: 'json'})
-        .subscribe((response: ProductosResponse) => {
-          console.log(response);
-          resolve(response);
-        }, (error: Error) => {
-          console.log(error);
-          reject(error);
+    this.http.delete(environment.API_ENDPOINT + '/productos/' + idProducto)
+      .subscribe(
+        data=>{
+          console.log(data);      
+        return data;
+        },
+        err =>{
+          console.log(err);
+          return err;
         });
-    });
-  }
 
+    return new Observable<any>();
+  }
 }
