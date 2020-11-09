@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../shared/services/usuario.service';
-import { ParametriaService } from '../../shared/services/parametria.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -18,7 +17,7 @@ export class AplicacionComponent implements OnInit {
   public legajosPersona = [];
   public legajoSelected: string;
 
-  constructor(protected usuarioService : UsuariosService, protected parametriaService : ParametriaService) { }
+  constructor(protected usuarioService : UsuariosService) { }
 
   ngOnInit() {
     this.legajoSelected = '';

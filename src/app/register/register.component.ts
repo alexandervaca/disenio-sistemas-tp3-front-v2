@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CategoriasService } from '../services/categorias.service';
+import { CategoriasService } from '../../shared/services/categorias.service';
 import { Categoria } from 'src/shared/models/domain/categoria';
 import Swal from 'sweetalert2';
-import { UsuariosService } from '../services/usuario.service';
+import { UsuariosService } from '../../shared/services/usuario.service';
 import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
