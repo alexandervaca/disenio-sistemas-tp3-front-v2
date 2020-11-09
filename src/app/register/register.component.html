@@ -1,0 +1,18 @@
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" [formGroup]="formRegister" (ngSubmit)="register()">
+            <select formControlName="tipoUsuario" placeholder="Tipo de usuario">
+                <option value="CLIENTE">Cliente</option>
+                <option value="PROVEEDOR">Proveedor</option>
+            </select>
+            <select *ngIf="tipoUsuarioProveedorSelected" formControlName="categoria" placeholder="Categoria">
+                <option *ngFor="let categoria of categorias" value="categoria.idCategoria">{{ categoria.descCategoria }}</option>
+            </select>
+            <input type="text" formControlName="nombre" placeholder="Nombre" />
+            <input type="text" formControlName="username" placeholder="Usuario" />
+            <input type="text" formControlName="mail" placeholder="Mail" />
+            <input type="password" formControlName="password" placeholder="contraseña" />
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</div>
