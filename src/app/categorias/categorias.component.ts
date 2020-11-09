@@ -19,7 +19,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   irAProveedor(idCategoria: number): void {
-    this.router.navigateByUrl(`principal/proveedores/${idCategoria}`);
+    this.router.navigateByUrl(`proveedores/${idCategoria}`);
   }
 
 }
