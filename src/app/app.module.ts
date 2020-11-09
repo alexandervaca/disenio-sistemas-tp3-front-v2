@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
     HeaderComponent,
     CategoriasComponent,
     PrincipalComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
