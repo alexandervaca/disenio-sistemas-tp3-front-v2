@@ -1,5 +1,23 @@
-<table>
+<!--<table>
     <tr *ngFor="let categoria of categorias" class="row">
         <td (click)="irAProveedor(categoria.idCategoria)">{{ categoria.descCategoria }}</td>
     </tr>
-</table>
+</table>-->
+
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Categorías</h4>
+                        <ul>
+                            <li *ngFor="let categoria of categorias">
+                                <a href="#" (click)="irAProveedor(categoria.idCategoria)">{{ categoria.descCategoria }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

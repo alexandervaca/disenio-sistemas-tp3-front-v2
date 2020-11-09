@@ -6,6 +6,9 @@ import { PrincipalComponent } from './principal/principal.component';
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { ProductosComponent } from './productos/productos.component';
+import { FooterComponent } from './footer/footer.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 const routes: Routes = [
   { 
@@ -13,8 +16,11 @@ const routes: Routes = [
       component: PrincipalComponent,
       canActivate: [AuthGuard],
       children: [
-          { path: 'categorias', component: CategoriasComponent},
+         { path: 'categorias', component: CategoriasComponent},
          { path: 'proveedores/:idProveedor', component: ProveedoresComponent },
+         { path: 'productos', component: ProductosComponent },
+         { path: 'footer', component: FooterComponent},
+         { path: 'contacto', component: ContactoComponent},
          /* { path: 'grafica1', component: Grafica1Component, data: { titulo: 'Gráfica #1' }},
           { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil' }},
           { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de cuenta' }},
