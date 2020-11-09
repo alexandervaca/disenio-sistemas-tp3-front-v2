@@ -1,4 +1,4 @@
-import { Producto } from '../modelo/producto';
+import { Producto } from '../domain/producto';
 
 export class ProductosResponse {
     productos:Producto[] = [];

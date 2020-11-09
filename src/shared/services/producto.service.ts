@@ -2,37 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import { Producto } from '../modelo/producto';
-import { ProductosResponse } from '../modelo/productosResponse';
-import { ProductoResponse } from '../modelo/productoResponse';
-import { CategoriaResponse } from '../modelo/categoriaResponse';
-import { error } from 'protractor';
+import { Producto } from '../../shared/models/domain/producto';
+import { ProductosResponse } from '../../shared/models/responses/productos.response';
+import { ProductoResponse } from '../../shared/models/responses/producto.response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  private access_token = environment.TOKEN;
-
   constructor(protected http : HttpClient) { }
 
-  public getCategorias() : Observable<CategoriaResponse> {    
-    
-    this.http.get(environment.API_ENDPOINT + '/categorias', {responseType: 'json'}).subscribe(
-      data=>{
-        console.log(data);      
-        return data;
-      },
-      err =>{
-        console.log(err);
-        return err;
-      });
-    return new Observable<CategoriaResponse>();
-  }
-
   public getProductos() : Observable<ProductosResponse> {    
-    
+    let token = localStorage.getItem('token');
+
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let options = {
+      headers: httpHeaders
+    }
+
     this.http.get(environment.API_ENDPOINT + '/productos', {responseType: 'json'}).subscribe(
       data=>{
         console.log(data);      
@@ -63,6 +54,10 @@ export class ProductosService {
 
   public crearProducto(producto: Producto) : Observable<ProductoResponse> {
 
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
     let productoReq = {
       descripcion: producto.descProducto,
       precio: producto.precio,
@@ -71,7 +66,11 @@ export class ProductosService {
       idProveedor: producto.idProveedor
     }
 
-    this.http.post(environment.API_ENDPOINT + '/productos', productoReq)
+    let options = {
+      headers: httpHeaders
+    }
+
+    this.http.post(environment.API_ENDPOINT + '/productos', productoReq, {...options, observe: 'response'})
       .subscribe(
         data=>{
           console.log(data);      
