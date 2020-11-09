@@ -1,5 +1,23 @@
-<table>
+<!--<table>
     <tr *ngFor="let proveedor of proveedores" class="row">
         <td (click)="irAProductos(proveedor.idUsuario)">{{ proveedor.nombre }}</td>
     </tr>
-</table>
+</table>-->
+
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Proveedores</h4>
+                        <ul>
+                            <li *ngFor="let  of proveedores">
+                                <a href="#" (click)="irAProveedor(proveedor.idProveedor)">{{ proveedor.nombre }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
