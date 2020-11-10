@@ -11,11 +11,14 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-      if (this._usuarioService.rol !== 'ADMIN_ROLE') {
-        this.router.navigateByUrl('/dashboard');
-        return false;
+      if (!this._usuarioService.isAdmin) {
+        if (this._usuarioService.isProveedor) {
+          this.router.navigateByUrl('/proveedor/productos');
+        } else {
+          this.router.navigateByUrl('/');
+        }
       }
-      return true;
+      return this._usuarioService.isAdmin;
   }
   
 }

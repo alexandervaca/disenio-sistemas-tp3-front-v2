@@ -6,4 +6,5 @@ export class Producto {
     stock: number;
     imagen: string;
     idProveedor: number;
+    habilitado: boolean;
 }

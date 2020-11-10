@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div style="width: 100%;">
+        <h3 style="width: 50%;">Notificaciones</h3>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Mensaje</th>
+                <th scope="col">Comprador</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let notificacion of this.notificaciones">
+                <td>{{ notificacion.message }}</td>
+                <td>{{ notificacion.nombreComprador }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

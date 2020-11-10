@@ -4,7 +4,7 @@ import { UsuariosService } from 'src/shared/services/usuario.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: []
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
@@ -15,6 +15,22 @@ export class HeaderComponent implements OnInit {
 
   get isLogged(): boolean {
     return this.usuarioService.isLogged;
+  }
+
+  get isCliente(): boolean {
+    return this.usuarioService.isCliente;
+  }
+
+  get isProveedor(): boolean {
+    return this.usuarioService.isProveedor;
+  }
+
+  get isAdmin(): boolean {
+    return this.usuarioService.isAdmin;
+  }
+
+  get username(): string {
+    return this.usuarioService.loggedUsername;
   }
 
   cerrarSesion(): void {

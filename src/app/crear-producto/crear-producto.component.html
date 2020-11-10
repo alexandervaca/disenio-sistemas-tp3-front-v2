@@ -1,0 +1,23 @@
+<div class="login-page">
+    <button mat-icon-button class="close-button botonSinEstilo" [mat-dialog-close]="false">
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+    <h3>Creación de producto</h3>
+    <div class="form">
+        <form class="login-form" [formGroup]="crearProductoFG" (ngSubmit)="crearProducto()">
+            <label for="descripcion">Descripcion:</label>
+            <input class="form-control" name="descripcion" type="text" formControlName="descripcion" />
+
+            <label for="precio">Precio:</label>
+            <input class="form-control" name="precio" type="number" formControlName="precio" />
+
+            <label for="stock">Stock:</label>
+            <input class="form-control" name="stock" type="number" formControlName="stock" />
+
+            <label for="imagen">Imágen:</label>
+            <input class="form-control" name="imagen" type="text" formControlName="imagen" />
+
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../shared/services/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private usuarioService: UsuariosService) { }
+  constructor(private usuarioService: UsuariosService, private router: Router) { }
 
   formLogin: FormGroup;
   usernameFormControl: FormControl;
@@ -36,8 +37,20 @@ export class LoginComponent implements OnInit {
       .subscribe(
         elem => { 
           Swal.fire('Exito', "Logín satisfactorio.", 'success');
+          this.usuarioService.setUsername(elem.username);
+          this.usuarioService.setPermiso(elem.permiso.replace('[', '').replace(']', ''));
           localStorage.setItem('token', elem.token);
-          localStorage.setItem('permiso', elem.permiso.replace('[', '').replace(']', ''));
+          switch (this.usuarioService.loggedRol) {
+            case "ROLE_ADMIN":
+              this.router.navigateByUrl(`/administracion`);
+              break;
+              case "ROLE_PROVEEDOR":
+                this.router.navigateByUrl(`proveedor/productos`);
+                break;
+            default:
+              this.router.navigateByUrl(`/`);
+              break;
+          }
          },
         error => { 
           Swal.fire('Error', "Credenciales inválidas. En caso de persistir el error contacte con un administrador.", 'error');

@@ -9,6 +9,11 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { ProductosproveedorComponent } from './productosproveedor/productosproveedor.component';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { AdministracionComponent } from './administracion/administracion.component';
+import { ProveedorGuard } from 'src/shared/guards/proveedor.guard';
+import { AdminGuard } from 'src/shared/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -16,24 +21,15 @@ const routes: Routes = [
     component: PrincipalComponent,
     children: [
       { path: '', component: InicioComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'contacto', component: ContactoComponent },
       { path: 'categorias', canActivate: [AuthGuard], component: CategoriasComponent },
       { path: 'proveedores/:idProveedor', canActivate: [AuthGuard], component: ProveedoresComponent },
       { path: 'productos', canActivate: [AuthGuard], component: ProductosComponent },
-      { path: 'contacto', component: ContactoComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      /* { path: 'grafica1', component: Grafica1Component, data: { titulo: 'Gráfica #1' }},
-       { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil' }},
-       { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de cuenta' }},
-       { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' }},
-       { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' }},
-       { path: 'buscar/:termino', component: BusquedaComponent, data: { titulo: 'Busqueda general' }},
-
-       // Mantenimientos
-       { path: 'usuarios', canActivate: [AdminGuard] , component: UsuariosComponent, data: { titulo: 'Usuarios' }},
-       { path: 'medicos', component: MedicosComponent, data: { titulo: 'Médicos' }},
-       { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Detalle del médico' }},
-       { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' }},*/
+      { path: 'proveedor/productos', canActivate: [AuthGuard, ProveedorGuard], component: ProductosproveedorComponent },
+      { path: 'proveedor/notificaciones', canActivate: [AuthGuard, ProveedorGuard], component: NotificacionesComponent },
+      { path: 'administracion', canActivate: [AuthGuard, AdminGuard], component: AdministracionComponent }
     ]
   },
 

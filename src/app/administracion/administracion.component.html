@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div style="width: 100%;">
+        <h3 style="width: 50%;">Administración</h3>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Tipo de usuario</th>
+                <th scope="col">Habilitado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of this.usuarios">
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.mail }}</td>
+                <td>{{ getRol(usuario.permiso) }}</td>
+                <td>
+                    <button *ngIf="usuario.habilitado" style="width: 120px;" (click)="cambiarEstadoUsuario(usuario)" type="button"
+                        class="btn btn-success">Habilitado</button>
+                    <button *ngIf="!usuario.habilitado" style="width: 120px;" (click)="cambiarEstadoUsuario(usuario)" type="button"
+                        class="btn btn-danger">Deshabilitado</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

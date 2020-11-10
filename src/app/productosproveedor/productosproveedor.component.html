@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div style="width: 100%;">
+        <h3 style="width: 50%;">Productos</h3>
+        <button  class="btn btn-primary" (click)="crearProducto()">Crear Producto</button>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Habilitado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of this.productos">
+                <td>{{ producto.imagen }}</td>
+                <td>{{ producto.descProducto }}</td>
+                <td>{{ producto.stock }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>
+                    <button *ngIf="producto.habilitado" style="width: 120px;" (click)="cambiarEstadoProducto(producto)" type="button"
+                        class="btn btn-success">Habilitado</button>
+                    <button *ngIf="!producto.habilitado" style="width: 120px;" (click)="cambiarEstadoProducto(producto)" type="button"
+                        class="btn btn-danger">Deshabilitado</button>
+                </td>
+                <td>
+                    <span style="cursor: pointer;" (click)="modificarProducto(producto)"><i class="fas fa-pen"></i></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

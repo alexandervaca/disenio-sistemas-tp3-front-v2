@@ -1,44 +1,44 @@
 <header class="header">
     <div class="header__top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="header__top__left"></div>
+                    <div class="header__top__left">
+                        <a href="#"><img src="assets/img/logo.png" alt=""/></a>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        <div class="header__top__right__auth">
+                            <button *ngIf="!isLogged" class="btn btn-secondary"  routerLink="/login"> Iniciar sesión</button>
                         </div>
                         <div class="header__top__right__auth">
-                            <button *ngIf="!isLogged"  routerLink="/login"> Iniciar sesi&oacute;n</button>
+                            <button *ngIf="!isLogged" class="btn btn-secondary"  routerLink="/register" style="margin-left: 10px;">Registrarse</button>
                         </div>
                         <div class="header__top__right__auth">
-                            <button *ngIf="!isLogged"  routerLink="/register" style="margin-left: 10px;">Registrarse</button>
+                            <span *ngIf="isLogged"> Bienvenido {{ username | titlecase }}</span>
                         </div>
                         <div class="header__top__right__auth">
-                            <button *ngIf="isLogged" (click)="cerrarSesion()" routerLink="/login">Cerrar sesi&oacute;n</button>
+                            <button *ngIf="isLogged" class="btn btn-secondary" (click)="cerrarSesion()" routerLink="/login">Cerrar sesión</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid" style="background-color: #F3F6FA;">
         <div class="row">
             <div class="col-lg-3">
-                <div class="header__logo">
-                    <a href="#"><img src="assets/img/logo.png" alt=""/></a>
-                </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a routerLink="/">Inicio</a></li>
-                        <li><a href="/categorias">Tienda</a></li>
-                        <li><a routerLink="/contacto">Contacto</a></li>
+                        <li *ngIf="isCliente || !isLogged"><a routerLink="/">Inicio</a></li>
+                        <li *ngIf="isCliente || !isLogged"><a routerLink="/contacto">Contacto</a></li>
+                        <li *ngIf="isCliente"><a href="/categorias">Tienda</a></li>
+                        <li *ngIf="isProveedor"><a routerLink="/proveedor/productos">Productos</a></li>
+                        <li *ngIf="isProveedor"><a routerLink="/proveedor/notificaciones">Notificaciones</a></li>
+                        <li *ngIf="isAdmin"><a routerLink="/administracion">Administración</a></li>
                     </ul>
                 </nav>
             </div>

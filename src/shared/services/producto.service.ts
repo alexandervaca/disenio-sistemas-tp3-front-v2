@@ -119,8 +119,7 @@ export class ProductosService {
       headers: httpHeaders
     }
 
-    return this.http.delete<Response>(environment.API_ENDPOINT + '/productos/' + idProducto, {...options, observe: 'response'})
-    .pipe(
-      map((response: HttpResponse<Response>) => response.body));
+    return this.http.put<Response>(environment.API_ENDPOINT + '/productos/' + idProducto, null, {...options, observe: 'response'})
+    .pipe(map((response: HttpResponse<Response>) => response.body));
   }
 }
