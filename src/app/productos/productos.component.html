@@ -13,26 +13,39 @@
                 <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Precio</th>
                 <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col"></th>
                 <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col"></th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let producto of this.productos">
-                <td>{{ producto.imagen }}</td>
-                <td>{{ producto.descProducto }}</td>
-                <td>{{ producto.stock }}</td>
-                <td>$ {{ producto.precio }}</td>
+            <tr *ngFor="let prodCantidad of prodsCantidad">
+                <td>{{ prodCantidad.producto.imagen }}</td>
+                <td>{{ prodCantidad.producto.descProducto }}</td>
+                <td>{{ prodCantidad.producto.stock }}</td>
+                <td>$ {{ prodCantidad.producto.precio }}</td>
                 <td>
-                    <button *ngIf="producto.habilitado && producto.stock > 0" style="width: 120px;" 
-                        (click)="agregarProducto(producto.stock, producto)"
+                    <button [disabled]="disableAgregar(prodCantidad)" style="width: 120px;" 
+                        (click)="agregarProducto(prodCantidad)"
                         type="button" class="btn btn-success">Agregar</button>
-                    <span style="cursor: pointer;" *ngIf="!producto.habilitado || producto.stock == 0">
-                        <i class="fa fa-window-close" aria-hidden="true"></i></span>
                 </td>
                 <td>
-                    <button *ngIf="producto.habilitado" style="width: 120px;" (click)="quitarProducto(producto)"
+                    <input type="text" disabled = true [value]="prodCantidad.cantidadAgregada">
+                </td>
+                <td>
+                    <button [disabled]="disableEliminar(prodCantidad)" style="width: 120px;" (click)="quitarProducto(prodCantidad)"
                         type="button" class="btn btn-danger">Quitar</button>
-                    <span style="cursor: pointer;" *ngIf="!producto.habilitado || producto.stock == 0">
-                        <i class="fa fa-window-close" aria-hidden="true"></i></span>
+                </td>
+            </tr>
+            <tr style="background-color: #F3F6FA;">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total: {{ total | number: '.2' }}</td>
+                <td>
+                    <button style="width: 150px;" [disabled]="disableFinalizarCompra()"
+                        (click)="realizarCompra()"
+                        type="button" class="btn btn-success">Finalizar Compra</button>
                 </td>
             </tr>
         </tbody>

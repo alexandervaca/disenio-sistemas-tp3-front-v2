@@ -17,6 +17,7 @@ import { AdminGuard } from 'src/shared/guards/admin.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IniciocontactoGuard } from 'src/shared/guards/iniciocontacto.guard';
 import { LoginRegistroGuard } from 'src/shared/guards/login-registro.guard';
+import { ClienteGuard } from 'src/shared/guards/cliente.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
       { path: 'contacto', canActivate: [IniciocontactoGuard], component: ContactoComponent },
       { path: 'categorias', canActivate: [AuthGuard], component: CategoriasComponent },
       { path: 'proveedores/:idCategoria', canActivate: [AuthGuard], component: ProveedoresComponent },
-      { path: 'productos', canActivate: [AuthGuard], component: ProductosComponent },
+      { path: 'productos', canActivate: [AuthGuard, ClienteGuard], component: ProductosComponent },
       { path: 'proveedor/productos', canActivate: [AuthGuard, ProveedorGuard], component: ProductosproveedorComponent },
       { path: 'proveedor/notificaciones', canActivate: [AuthGuard, ProveedorGuard], component: NotificacionesComponent },
       { path: 'administracion', canActivate: [AuthGuard, AdminGuard], component: AdministracionComponent },

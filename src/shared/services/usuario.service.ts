@@ -9,6 +9,7 @@ import { Categoria } from 'src/shared/models/domain/categoria';
 import { RequestRegisterBody } from 'src/shared/models/request/register.request';
 import { GetUsuariosResponse } from '../models/responses/proveedores.response';
 import { Usuario } from '../models/domain/usuario';
+import { GetUsuarioResponse } from '../models/responses/usuario.response';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -82,6 +83,26 @@ export class UsuariosService {
               .pipe(
                 retry(3),
                 map((response: HttpResponse<GetUsuariosResponse>) => response.body)
+              );
+  }
+
+  public getUsuario(): Observable<GetUsuarioResponse> {
+    let token = localStorage.getItem('token');
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+
+    let options = {
+      headers: httpHeaders
+    }
+
+    return this
+            .http
+              .get<GetUsuarioResponse>(environment.API_ENDPOINT + '/usuario', {...options, observe: 'response'})
+              .pipe(
+                retry(3),
+                map((response: HttpResponse<GetUsuarioResponse>) => response.body)
               );
   }
 
