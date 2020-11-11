@@ -47,7 +47,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CrearProductoComponent,
     NotificacionesComponent,
     AdministracionComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

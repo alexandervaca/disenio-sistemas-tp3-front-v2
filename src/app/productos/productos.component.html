@@ -1,15 +1,41 @@
-<section class="product spad">
-  <div class="container">
-      <div style="width: 100%; height: 100%;">
-          <h3 style="margin-left: 43%;">Productos</h3>
-          <table>
-              <tr *ngFor="let producto of productos" class="row">
-                  <td>{{ producto.descProducto }}</td>
-                  <td>${{ prod.precio }}</td>
-                  <td>${{ prod.stock }}</td>
-                  <td>${{ prod.imagen }}</td>
-              </tr>
-          </table>
-      </div>
-  </div>
-</section>
+<div class="container-fluid">
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-10">
+            <h3>Productos</h3>
+        </div>
+    </div>
+    <table *ngIf="productos !== undefined && productos.length > 0 " class="table">
+        <thead class="thead-light">
+            <tr>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Imagen</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Producto</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Stock</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Precio</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col"></th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of this.productos">
+                <td>{{ producto.imagen }}</td>
+                <td>{{ producto.descProducto }}</td>
+                <td>{{ producto.stock }}</td>
+                <td>$ {{ producto.precio }}</td>
+                <td>
+                    <button *ngIf="producto.habilitado && producto.stock > 0" style="width: 120px;" 
+                        (click)="agregarProducto(producto.stock, producto)"
+                        type="button" class="btn btn-success">Agregar</button>
+                    <span style="cursor: pointer;" *ngIf="!producto.habilitado || producto.stock == 0">
+                        <i class="fa fa-window-close" aria-hidden="true"></i></span>
+                </td>
+                <td>
+                    <button *ngIf="producto.habilitado" style="width: 120px;" (click)="quitarProducto(producto)"
+                        type="button" class="btn btn-danger">Quitar</button>
+                    <span style="cursor: pointer;" *ngIf="!producto.habilitado || producto.stock == 0">
+                        <i class="fa fa-window-close" aria-hidden="true"></i></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 style="margin-top: 20px;" *ngIf="productos === undefined || productos.length === 0">Sin productos en stock.</h3>
+</div>
