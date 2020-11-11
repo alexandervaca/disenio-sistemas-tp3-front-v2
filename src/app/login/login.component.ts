@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           Swal.fire('Exito', "Logín satisfactorio.", 'success');
           this.usuarioService.setUsername(elem.username);
           this.usuarioService.setPermiso(elem.permiso.replace('[', '').replace(']', ''));
-          localStorage.setItem('token', elem.token);
+          this.usuarioService.setToken(elem.token);
           switch (this.usuarioService.loggedRol) {
             case "ROLE_ADMIN":
               this.router.navigateByUrl(`/administracion`);

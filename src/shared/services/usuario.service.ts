@@ -20,9 +20,6 @@ const httpOptions = {
 })
 export class UsuariosService {
 
-  username = '';
-  permiso = '';
-
   constructor(private http: HttpClient) { }
 
   public login(username: string, password: string): Observable<LoginResponse> {
@@ -107,19 +104,23 @@ export class UsuariosService {
   }
 
   public setUsername(username: string): void {
-    this.username = username;
+    localStorage.setItem('username', username);
   }
 
   public setPermiso(permiso: string): void {
-    this.permiso = permiso;
+    localStorage.setItem('permiso', permiso);
+  }
+
+  public setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 
   get loggedUsername(): string {
-    return this.username;
+    return localStorage.getItem('username') || '';
   }
 
   get loggedRol(): string {
-    return this.permiso;
+    return localStorage.getItem('permiso') || '';
   }
 
   get token(): string {
@@ -127,25 +128,22 @@ export class UsuariosService {
   }
 
   get isLogged(): boolean {
-    return this.token.length > 0;
+    return this.token.length > 0 && this.loggedUsername.length > 0 && this.loggedRol.length > 0;
   }
 
   get isCliente(): boolean {
-    return this.permiso === 'ROLE_CLIENTE';
+    return this.loggedRol === 'ROLE_CLIENTE';
   }
 
   get isAdmin(): boolean {
-    return this.permiso === 'ROLE_ADMIN';
+    return this.loggedRol === 'ROLE_ADMIN';
   }
 
   get isProveedor(): boolean {
-    return this.permiso === 'ROLE_PROVEEDOR';
+    return this.loggedRol === 'ROLE_PROVEEDOR';
   }
 
   cerrarSesion(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('permiso');
-    this.username = '';
-    this.permiso = '';
+    localStorage.clear();
   }
 }
