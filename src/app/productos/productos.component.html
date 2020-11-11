@@ -18,8 +18,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let prodCantidad of prodsCantidad">
-                <td>{{ prodCantidad.producto.imagen }}</td>
-                <td>{{ prodCantidad.producto.descProducto }}</td>
+                <td>
+                    <img *ngIf="prodCantidad.producto.imagen" style="width: 80px; height: 100px;" [src]="'/assets/img/' + prodCantidad.producto.imagen" alt="prodCantidad.producto.descProducto">
+                    <img *ngIf="!prodCantidad.producto.imagen" style="width: 130px; height: 100px;" [src]="'/assets/img/noimage.jpg'" alt="No image">
+                </td>
+                <td>{{ prodCantidad.producto.descProducto | titlecase }}</td>
                 <td>{{ prodCantidad.producto.stock }}</td>
                 <td>$ {{ prodCantidad.producto.precio }}</td>
                 <td>

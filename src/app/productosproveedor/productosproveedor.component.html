@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
         <div class="col-10">
-            <h3 style="margin-left: 44%;">Productos</h3>
+            <h3>Productos</h3>
         </div>
         <div class="col-2">
             <button class="btn btn-primary" (click)="crearProducto()">Crear Producto</button>
@@ -20,8 +20,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let producto of this.productos">
-                <td>{{ producto.imagen }}</td>
-                <td>{{ producto.descProducto }}</td>
+                <td> 
+                    <img *ngIf="producto.imagen" style="width: 80px; height: 100px;" [src]="'/assets/img/' + producto.imagen" alt="producto.descProducto">
+                    <img *ngIf="!producto.imagen" style="width: 130px; height: 100px;" [src]="'/assets/img/noimage.jpg'" alt="No image">
+                </td>
+                <td>{{ producto.descProducto | titlecase }}</td>
                 <td>{{ producto.stock }}</td>
                 <td>{{ producto.precio }}</td>
                 <td>
