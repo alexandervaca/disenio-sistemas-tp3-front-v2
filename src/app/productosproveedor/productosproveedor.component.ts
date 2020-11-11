@@ -4,6 +4,9 @@ import { Producto } from 'src/shared/models/domain/producto';
 import { MatDialog } from '@angular/material/dialog';
 import { ModificarProductoComponent } from '../modificar-producto/modificar-producto.component';
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
+import { error } from 'protractor';
+import { UsuariosService } from 'src/shared/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productosproveedor',
@@ -14,7 +17,7 @@ export class ProductosproveedorComponent implements OnInit {
 
   productos: Producto[];
 
-  constructor(private productosService: ProductosService, private dialog: MatDialog) { }
+  constructor(private productosService: ProductosService, private dialog: MatDialog, private usuarioService: UsuariosService, private router: Router) { }
 
   ngOnInit() {
     this.getProductos();
@@ -24,6 +27,12 @@ export class ProductosproveedorComponent implements OnInit {
     this.productosService.eliminarProducto(producto.idProducto).subscribe(
       elem => { 
         this.getProductos();
+       }, error => {
+        if (error.error.message === 'Acceso denegado') {
+          this.usuarioService.cerrarSesion();
+          this.router.navigateByUrl('/login');
+          return;
+        }
        }
     );
   }
@@ -35,6 +44,11 @@ export class ProductosproveedorComponent implements OnInit {
         this.productos = elem.productos;
        },
       error => { 
+        if (error.error.message === 'Acceso denegado') {
+          this.usuarioService.cerrarSesion();
+          this.router.navigateByUrl('/login');
+          return;
+        }
         this.productos = [];
        }
     );

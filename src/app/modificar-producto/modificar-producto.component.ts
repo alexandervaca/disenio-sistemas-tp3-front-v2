@@ -4,6 +4,8 @@ import { Producto } from 'src/shared/models/domain/producto';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ProductosService } from 'src/shared/services/producto.service';
+import { UsuariosService } from 'src/shared/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modificar-producto',
@@ -21,7 +23,7 @@ export class ModificarProductoComponent implements OnInit {
   producto: Producto;
 
   constructor(public dialogRef: MatDialogRef<ModificarProductoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private productosService: ProductosService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private productosService: ProductosService, private usuarioService: UsuariosService, private router: Router) {
     this.producto = data.producto;
   }
 
@@ -50,10 +52,19 @@ export class ModificarProductoComponent implements OnInit {
       .modificarProducto
       (this.producto.idProducto, this.descripcionFormControl.value,
         this.precioFormControl.value, this.stockFormControl.value, this.imagenFormControl.value)
-        .subscribe( elem => {
-          this.dialogRef.close();
-          Swal.fire('Exito', "Modificación de producto satisfactoria.", 'success');
-        }
-        , error => Swal.fire('Error', "Ocurrió un error al modificar el producto. Por favor contacte con un administrador.", 'error'));
+      .subscribe(elem => {
+        this.dialogRef.close();
+        Swal.fire('Exito', "Modificación de producto satisfactoria.", 'success');
+      }
+        , error => {
+          if (error.error.message === 'Acceso denegado') {
+            this.dialogRef.close();
+            this.usuarioService.cerrarSesion();
+            this.router.navigateByUrl('/login');
+            return;
+          } else {
+            Swal.fire('Error', "Ocurrió un error al modificar el producto. Por favor contacte con un administrador.", 'error');
+          }
+        });
   }
 }

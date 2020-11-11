@@ -7,12 +7,14 @@
             <tr>
                 <th scope="col">Mensaje</th>
                 <th scope="col">Comprador</th>
+                <th scope="col">Número de compra</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let notificacion of this.notificaciones">
                 <td>{{ notificacion.message }}</td>
                 <td>{{ notificacion.nombreComprador }}</td>
+                <td>{{ notificacion.idCompra }}</td>
             </tr>
         </tbody>
     </table>

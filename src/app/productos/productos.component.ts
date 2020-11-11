@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from 'src/shared/services/producto.service';
 import { Producto } from 'src/shared/models/domain/producto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarritoDeCompra } from 'src/shared/models/domain/CarritoDeCompra';
 import { ProductosCantidades, RequestRealizarCompraBody } from 'src/shared/models/request/crear.compra.request';
 import { UsuariosService } from 'src/shared/services/usuario.service';
@@ -24,7 +24,7 @@ export class ProductosComponent implements OnInit {
   prodsCantidad: ProdCantidad[] = [];
 
   constructor(private productosService: ProductosService, private usuarioService: UsuariosService,
-    private compraService: ComprasService , private activatedRoute: ActivatedRoute) {
+    private compraService: ComprasService , private activatedRoute: ActivatedRoute, private router: Router) {
     this.carrito = new CarritoDeCompra();
   }
 
@@ -47,6 +47,13 @@ export class ProductosComponent implements OnInit {
           this.productos.forEach(elem => {
             this.prodsCantidad.push({ producto: elem, cantidadAgregada: 0 });
           });
+        }, error => {
+          if (error.error.message === 'Acceso denegado') {
+            this.usuarioService.cerrarSesion();
+            this.router.navigateByUrl('/login');
+            return;
+          }
+          this.productos = [];
         });
   }
 
@@ -89,9 +96,18 @@ export class ProductosComponent implements OnInit {
     this.compraService.comprar(body).subscribe(
       elem => { 
         Swal.fire('Exito', "Compra realizada correctamente.", 'success');
+        this.prodsCantidad = [];
         this.getProductos();
       },
-      error => Swal.fire('Error', "Ocurrió un error al realizar la compra. En caso de persistir el error contacte con un administrador.", 'error')
+      error => {
+        if (error.error.message === 'Acceso denegado') {
+          this.usuarioService.cerrarSesion();
+          this.router.navigateByUrl('/login');
+          return;
+        } else {
+          Swal.fire('Error', "Ocurrió un error al realizar la compra. En caso de persistir el error contacte con un administrador.", 'error')
+        }
+      }
     );
   }
 }

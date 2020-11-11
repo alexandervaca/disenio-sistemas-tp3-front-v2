@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ProductosService } from 'src/shared/services/producto.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UsuariosService } from 'src/shared/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-producto',
@@ -17,7 +19,7 @@ export class CrearProductoComponent implements OnInit {
   stockFormControl: FormControl;
   imagenFormControl: FormControl;
 
-  constructor(public dialogRef: MatDialogRef<CrearProductoComponent>, private productosService: ProductosService) { }
+  constructor(public dialogRef: MatDialogRef<CrearProductoComponent>, private productosService: ProductosService, private usuarioService: UsuariosService, private router: Router) { }
 
   ngOnInit() {
     this.descripcionFormControl = new FormControl(null, [Validators.required]);
@@ -42,11 +44,20 @@ export class CrearProductoComponent implements OnInit {
     this.productosService
       .crearProducto
       (this.descripcionFormControl.value, this.precioFormControl.value, this.stockFormControl.value, this.imagenFormControl.value)
-        .subscribe( elem => {
-          this.dialogRef.close();
-          Swal.fire('Exito', "Creación de producto satisfactoria.", 'success');
-        }
-        , error => Swal.fire('Error', "Ocurrió un error al crear el producto. Por favor contacte con un administrador.", 'error'));
+      .subscribe(elem => {
+        this.dialogRef.close();
+        Swal.fire('Exito', "Creación de producto satisfactoria.", 'success');
+      }
+        , error => {
+          if (error.error.message === 'Acceso denegado') {
+            this.dialogRef.close();
+            this.usuarioService.cerrarSesion();
+            this.router.navigateByUrl('/login');
+            return;
+          } else {
+            Swal.fire('Error', "Ocurrió un error al crear el producto. Por favor contacte con un administrador.", 'error');
+          }
+        });
   }
 
 }

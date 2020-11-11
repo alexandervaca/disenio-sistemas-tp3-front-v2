@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificacionesService } from 'src/shared/services/notificaciones.service';
+import { UsuariosService } from 'src/shared/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notificaciones',
@@ -10,7 +12,7 @@ export class NotificacionesComponent implements OnInit {
 
   notificaciones: Notification[];
 
-  constructor(private notificacionesService: NotificacionesService) { }
+  constructor(private notificacionesService: NotificacionesService, private usuarioService: UsuariosService, private router: Router) { }
 
   ngOnInit() {
     this.getProductos();
@@ -22,7 +24,12 @@ export class NotificacionesComponent implements OnInit {
       elem => { 
         this.notificaciones = elem.notificaciones;
        },
-      error => { 
+      error => {
+        if (error.error.message === 'Acceso denegado') {
+          this.usuarioService.cerrarSesion();
+          this.router.navigateByUrl('/login');
+          return;
+        }
         this.notificaciones = [];
        }
     );

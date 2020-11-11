@@ -7,4 +7,5 @@ export class Usuario {
 	mail: string;
     categoria: Categoria;
 	permiso: Permiso;
+	habilitado: boolean;
 }
