@@ -27,6 +27,7 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 import { AdministracionComponent } from './administracion/administracion.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ComprasComponent } from './compras/compras.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NotificacionesComponent,
     AdministracionComponent,
     PageNotFoundComponent,
+    ComprasComponent,
   ],
   imports: [
     BrowserModule,

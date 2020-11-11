@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+      <div class="col-10">
+          <h3>Compras</h3>
+      </div>
+  </div>
+  <table *ngIf="compras !== undefined && compras.length > 0 " class="table">
+      <thead class="thead-light">
+          <tr>
+              <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Codigo</th>
+              <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Fecha de compra</th>
+              <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Precio total</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let compra of compras">
+              <td>{{ compra.idCompra }}</td>
+              <td>{{ compra.fechaCompra }}</td>
+              <td>$ {{ compra.precioTotal | number: '.2' }}</td>
+          </tr>
+          <tr *ngIf="isProveedor" style="background-color: #F3F6FA;">
+              <td></td>
+              <td></td>
+              <td>Total: {{ total | number: '.2' }}</td>
+          </tr>
+      </tbody>
+  </table>
+  <h3 style="margin-top: 20px;" *ngIf="compras === undefined || compras.length === 0">No se efecturaon compras.</h3>
+</div>
