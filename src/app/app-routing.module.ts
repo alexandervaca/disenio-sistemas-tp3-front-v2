@@ -25,11 +25,12 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'contacto', component: ContactoComponent },
       { path: 'categorias', canActivate: [AuthGuard], component: CategoriasComponent },
-      { path: 'proveedores/:idProveedor', canActivate: [AuthGuard], component: ProveedoresComponent },
+      { path: 'proveedores/:idCategoria', canActivate: [AuthGuard], component: ProveedoresComponent },
       { path: 'productos', canActivate: [AuthGuard], component: ProductosComponent },
       { path: 'proveedor/productos', canActivate: [AuthGuard, ProveedorGuard], component: ProductosproveedorComponent },
       { path: 'proveedor/notificaciones', canActivate: [AuthGuard, ProveedorGuard], component: NotificacionesComponent },
-      { path: 'administracion', canActivate: [AuthGuard, AdminGuard], component: AdministracionComponent }
+      { path: 'administracion', canActivate: [AuthGuard, AdminGuard], component: AdministracionComponent },
+      { path: 'productos/:idProveedor', canActivate: [AuthGuard], component: ProductosComponent },
     ]
   },
 

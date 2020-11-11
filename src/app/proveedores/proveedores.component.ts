@@ -16,7 +16,7 @@ export class ProveedoresComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(elem => {
-      this.proveedoresService.getProveedoresPorCategoria(Number(elem.get('idProveedor'))).subscribe(elem => this.proveedores = elem.usuarios);
+      this.proveedoresService.getProveedoresPorCategoria(Number(elem.get('idCategoria'))).subscribe(elem => this.proveedores = elem.usuarios);
     });
 
   }

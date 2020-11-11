@@ -127,7 +127,7 @@ export class UsuariosService {
   }
 
   get isLogged(): boolean {
-    return this.token.length > 0 && this.username.length > 0 && this.permiso.length > 0;
+    return this.token.length > 0;
   }
 
   get isCliente(): boolean {
