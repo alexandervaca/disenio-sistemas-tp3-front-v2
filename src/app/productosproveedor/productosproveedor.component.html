@@ -1,17 +1,21 @@
 <div class="container-fluid">
-    <div style="width: 100%;">
-        <h3 style="width: 50%;">Productos</h3>
-        <button  class="btn btn-primary" (click)="crearProducto()">Crear Producto</button>
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-10">
+            <h3>Productos</h3>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" (click)="crearProducto()">Crear Producto</button>
+        </div>
     </div>
-    <table class="table">
+    <table *ngIf="productos !== undefined && productos.length > 0 " class="table">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Imagen</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Habilitado</th>
-                <th scope="col">Acciones</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Imagen</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Producto</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Stock</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Precio</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Habilitado</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -32,4 +36,5 @@
             </tr>
         </tbody>
     </table>
+    <h3 style="margin-top: 20px;" *ngIf="productos === undefined || productos.length === 0">No existen productos cargados.</h3>
 </div>

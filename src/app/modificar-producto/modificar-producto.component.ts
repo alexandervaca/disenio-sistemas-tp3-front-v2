@@ -29,7 +29,9 @@ export class ModificarProductoComponent implements OnInit {
     this.descripcionFormControl = new FormControl(this.producto.descProducto, [Validators.required]);
     this.precioFormControl = new FormControl(this.producto.precio, [Validators.required]);
     this.stockFormControl = new FormControl(this.producto.stock, [Validators.required]);
-    this.imagenFormControl = new FormControl(this.producto.imagen);
+    const imagen = this.producto.imagen;
+
+    this.imagenFormControl = new FormControl(null);
 
     this.modificarProductoFG = new FormGroup({
       descripcion: this.descripcionFormControl,
@@ -44,7 +46,6 @@ export class ModificarProductoComponent implements OnInit {
       Swal.fire('Error', "Formulario con datos incorrectos. En caso de persistir el error contacte con un administrador.", 'error');
       return;
     }
-
     this.productosService
       .modificarProducto
       (this.producto.idProducto, this.descripcionFormControl.value,

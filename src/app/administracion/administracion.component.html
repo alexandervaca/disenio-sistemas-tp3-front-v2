@@ -2,13 +2,13 @@
     <div style="width: 100%;">
         <h3 style="width: 50%;">Administración</h3>
     </div>
-    <table class="table">
+    <table *ngIf="usuarios !== undefined && usuarios.length > 0" class="table">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Usuario</th>
-                <th scope="col">Mail</th>
-                <th scope="col">Tipo de usuario</th>
-                <th scope="col">Habilitado</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Usuario</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Mail</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Tipo de usuario</th>
+                <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Habilitado</th>
             </tr>
         </thead>
         <tbody>
@@ -25,4 +25,5 @@
             </tr>
         </tbody>
     </table>
+    <h3 style="margin-top: 20px;" *ngIf="usuarios === undefined || usuarios.length === 0">No existen usuarios cargados.</h3>
 </div>

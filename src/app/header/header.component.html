@@ -16,7 +16,7 @@
                             <button *ngIf="!isLogged" class="btn btn-secondary"  routerLink="/register" style="margin-left: 10px;">Registrarse</button>
                         </div>
                         <div class="header__top__right__auth">
-                            <span *ngIf="isLogged"> Bienvenido {{ username | titlecase }}</span>
+                            <span *ngIf="isLogged" style="margin-right: 20px; font-weight: bold;"> Bienvenido {{ username | titlecase }}</span>
                         </div>
                         <div class="header__top__right__auth">
                             <button *ngIf="isLogged" class="btn btn-secondary" (click)="cerrarSesion()" routerLink="/login">Cerrar sesión</button>
@@ -45,7 +45,6 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
                     </ul>
                 </div>
             </div>

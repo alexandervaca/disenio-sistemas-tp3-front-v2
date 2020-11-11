@@ -14,16 +14,19 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 import { AdministracionComponent } from './administracion/administracion.component';
 import { ProveedorGuard } from 'src/shared/guards/proveedor.guard';
 import { AdminGuard } from 'src/shared/guards/admin.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { IniciocontactoGuard } from 'src/shared/guards/iniciocontacto.guard';
+import { LoginRegistroGuard } from 'src/shared/guards/login-registro.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: PrincipalComponent,
     children: [
-      { path: '', component: InicioComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'contacto', component: ContactoComponent },
+      { path: '', canActivate: [IniciocontactoGuard], component: InicioComponent },
+      { path: 'register', canActivate: [LoginRegistroGuard], component: RegisterComponent },
+      { path: 'login', canActivate: [LoginRegistroGuard], component: LoginComponent },
+      { path: 'contacto', canActivate: [IniciocontactoGuard], component: ContactoComponent },
       { path: 'categorias', canActivate: [AuthGuard], component: CategoriasComponent },
       { path: 'proveedores/:idCategoria', canActivate: [AuthGuard], component: ProveedoresComponent },
       { path: 'productos', canActivate: [AuthGuard], component: ProductosComponent },
@@ -33,7 +36,10 @@ const routes: Routes = [
       { path: 'productos/:idProveedor', canActivate: [AuthGuard], component: ProductosComponent },
     ]
   },
-
+  {
+    path:'**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

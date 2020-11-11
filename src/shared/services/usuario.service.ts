@@ -9,7 +9,6 @@ import { Categoria } from 'src/shared/models/domain/categoria';
 import { RequestRegisterBody } from 'src/shared/models/request/register.request';
 import { GetUsuariosResponse } from '../models/responses/proveedores.response';
 import { Usuario } from '../models/domain/usuario';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -25,6 +25,8 @@ import { ModificarProductoComponent } from './modificar-producto/modificar-produ
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { AdministracionComponent } from './administracion/administracion.component';
+import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { AdministracionComponent } from './administracion/administracion.compone
     ModificarProductoComponent,
     CrearProductoComponent,
     NotificacionesComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
