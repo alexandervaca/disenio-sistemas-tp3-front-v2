@@ -43,13 +43,11 @@ export class UsuariosService {
               );
   }
 
-  public register(username: string, password: string, permiso: string, mail: string, categoria: Categoria, nombre: string): Observable<Response> {
+  public register(username: string, password: string, permiso: string, mail: string, idCategoria: number, nombre: string): Observable<Response> {
     
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
-    const idCategoria = (categoria) ? categoria.idCategoria : null;
 
     let body = new RequestRegisterBody(username, password, permiso, mail, idCategoria, nombre);
 

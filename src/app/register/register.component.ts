@@ -53,6 +53,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    let categoria = this.categoriaFormControl.value;
+    if (this.tipoUsuarioFormControl.value != 'PROVEEDOR') {
+      categoria = null;
+    }
     this.usuarioServie.register(this.usernameFormControl.value, this.passwordFormControl.value,
       this.tipoUsuarioFormControl.value, this.mailFormControl.value,
       this.categoriaFormControl.value, this.nombreFormControl.value)

@@ -6,7 +6,7 @@
                 <option value="PROVEEDOR">Proveedor</option>
             </select>
             <select *ngIf="tipoUsuarioProveedorSelected" formControlName="categoria" placeholder="Categoria">
-                <option *ngFor="let categoria of categorias" value="categoria.idCategoria">{{ categoria.descCategoria }}</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{ categoria.descCategoria }}</option>
             </select>
             <input type="text" formControlName="nombre" placeholder="Nombre" />
             <input type="text" formControlName="username" placeholder="Usuario" />
