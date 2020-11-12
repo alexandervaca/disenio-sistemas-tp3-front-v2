@@ -30,7 +30,7 @@ export class ModificarProductoComponent implements OnInit {
   ngOnInit() {
     this.descripcionFormControl = new FormControl(this.producto.descProducto, [Validators.required]);
     this.precioFormControl = new FormControl(this.producto.precio, [Validators.required]);
-    this.stockFormControl = new FormControl(this.producto.stock, [Validators.required]);
+    this.stockFormControl = new FormControl(this.producto.stock, [Validators.required, Validators.pattern("[0-9]+")]);
     const imagen = this.producto.imagen;
 
     this.imagenFormControl = new FormControl(null);
