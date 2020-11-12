@@ -40,10 +40,13 @@ export class CrearProductoComponent implements OnInit {
       Swal.fire('Error', "Formulario con datos incorrectos. En caso de persistir el error contacte con un administrador.", 'error');
       return;
     }
-
+    const imagen: string = this.imagenFormControl.value;
+    const partImage = (imagen) ? imagen.split("\\") : [];
+    const lengthImage = partImage.length;
+    const nameImage = (imagen) ? partImage[lengthImage - 1] : null;
     this.productosService
       .crearProducto
-      (this.descripcionFormControl.value, this.precioFormControl.value, this.stockFormControl.value, this.imagenFormControl.value)
+      (this.descripcionFormControl.value, this.precioFormControl.value, this.stockFormControl.value, nameImage)
       .subscribe(elem => {
         this.dialogRef.close();
         Swal.fire('Exito', "Creación de producto satisfactoria.", 'success');

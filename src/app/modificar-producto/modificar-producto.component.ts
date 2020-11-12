@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ProductosService } from 'src/shared/services/producto.service';
 import { UsuariosService } from 'src/shared/services/usuario.service';
 import { Router } from '@angular/router';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-modificar-producto',
@@ -50,10 +51,14 @@ export class ModificarProductoComponent implements OnInit {
       Swal.fire('Error', "Formulario con datos incorrectos. En caso de persistir el error contacte con un administrador.", 'error');
       return;
     }
+    const imagen: string = this.imagenFormControl.value;
+    const partImage = (imagen) ? imagen.split("\\") : [];
+    const lengthImage = partImage.length;
+    const nameImage = (imagen) ? partImage[lengthImage - 1] : null;
     this.productosService
       .modificarProducto
       (this.producto.idProducto, this.descripcionFormControl.value,
-        this.precioFormControl.value, this.stockFormControl.value, this.imagenFormControl.value)
+        this.precioFormControl.value, this.stockFormControl.value, nameImage)
       .subscribe(elem => {
         this.dialogRef.close();
         Swal.fire('Exito', "Modificación de producto satisfactoria.", 'success');
