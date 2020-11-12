@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.categoriaService.getCategorias().subscribe(elem => {
       this.categorias = elem.categorias;
-    })
+    }, error => console.log(error))
 
     this.nombreFormControl = new FormControl(null, [Validators.required, Validators.min(5), Validators.max(30)]);
     this.tipoUsuarioFormControl = new FormControl(null, Validators.required);
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         elem => {
           Swal.fire('Exito', "Registro satisfactorio.", 'success');
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/login']);
         },
         error => Swal.fire('Error', "Ocurrió un error al realizar el registro, contacte con un administrador.", 'error')
       );

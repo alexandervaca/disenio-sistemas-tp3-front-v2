@@ -13,12 +13,9 @@ export class CategoriasService {
   constructor(private http: HttpClient) { }
 
   public getCategorias(): Observable<CategoriasResponse> {
-    
-    let token = localStorage.getItem('token');
 
     let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
+      'Content-Type': 'application/json'
     });
 
     let options = {

@@ -23,7 +23,7 @@ export class CrearProductoComponent implements OnInit {
 
   ngOnInit() {
     this.descripcionFormControl = new FormControl(null, [Validators.required]);
-    this.precioFormControl = new FormControl(null, [Validators.required]);
+    this.precioFormControl = new FormControl(null, [Validators.required, Validators.pattern("(([0-9]+)(|[,|.][0-9]{1,2}))")]);
     this.stockFormControl = new FormControl(null, [Validators.required, Validators.pattern("[0-9]+")]);
     this.imagenFormControl = new FormControl(null);
 

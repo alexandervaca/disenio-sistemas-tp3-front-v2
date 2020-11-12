@@ -28,8 +28,10 @@ export class ModificarProductoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.data);
+    console.log(this.producto);
     this.descripcionFormControl = new FormControl(this.producto.descProducto, [Validators.required]);
-    this.precioFormControl = new FormControl(this.producto.precio, [Validators.required]);
+    this.precioFormControl = new FormControl(this.producto.precio, [Validators.required, Validators.pattern("(([0-9]+)(|[,|.][0-9]{1,2}))")]);
     this.stockFormControl = new FormControl(this.producto.stock, [Validators.required, Validators.pattern("[0-9]+")]);
     const imagen = this.producto.imagen;
 
