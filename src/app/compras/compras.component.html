@@ -10,6 +10,7 @@
               <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Codigo</th>
               <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Fecha de compra</th>
               <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Precio total</th>
+              <th style="background-color:  #F3F6FA !important; border-color:  #F3F6FA !important;" scope="col">Detalle</th>
           </tr>
       </thead>
       <tbody>
@@ -17,6 +18,10 @@
               <td>{{ compra.idCompra }}</td>
               <td>{{ compra.fechaCompra }}</td>
               <td>$ {{ compra.precioTotal | number: '.2' }}</td>
+              <td>
+                <span style="cursor: pointer;" (click)="irAlDetalle(compra)">
+                    <i class="fas fa-caret-square-down"></i></span>
+              </td>
           </tr>
           <tr *ngIf="isProveedor" style="background-color: #F3F6FA;">
               <td></td>

@@ -28,6 +28,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ComprasComponent } from './compras/compras.component';
+import { ComprasDetalleComponent } from './compras-detalle/compras-detalle.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ComprasComponent } from './compras/compras.component';
     AdministracionComponent,
     PageNotFoundComponent,
     ComprasComponent,
+    ComprasDetalleComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { ComprasComponent } from './compras/compras.component';
     BrowserAnimationsModule,
     MatIconModule
   ],
-  entryComponents: [ModificarProductoComponent, CrearProductoComponent],
+  entryComponents: [ModificarProductoComponent, CrearProductoComponent, ComprasDetalleComponent],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
