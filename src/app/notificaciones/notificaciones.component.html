@@ -8,6 +8,7 @@
                 <th scope="col">Mensaje</th>
                 <th scope="col">Comprador</th>
                 <th scope="col">Número de compra</th>
+                <th scope="col">Detalle</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,10 @@
                 <td>{{ notificacion.message }}</td>
                 <td>{{ notificacion.nombreComprador }}</td>
                 <td>{{ notificacion.idCompra }}</td>
+                <td>
+                    <span style="cursor: pointer;" (click)="irAlDetalle(notificacion.idCompra)">
+                        <i class="fas fa-caret-square-down"></i></span>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificacionesService } from 'src/shared/services/notificaciones.service';
 import { UsuariosService } from 'src/shared/services/usuario.service';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Compra } from 'src/shared/models/domain/compra';
+import { ComprasDetalleComponent } from '../compras-detalle/compras-detalle.component';
 
 @Component({
   selector: 'app-notificaciones',
@@ -12,7 +15,8 @@ export class NotificacionesComponent implements OnInit {
 
   notificaciones: Notification[];
 
-  constructor(private notificacionesService: NotificacionesService, private usuarioService: UsuariosService, private router: Router) { }
+  constructor(private notificacionesService: NotificacionesService, private usuarioService: UsuariosService,
+    private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.getProductos();
@@ -35,4 +39,11 @@ export class NotificacionesComponent implements OnInit {
     );
   }
 
+  irAlDetalle(idCompra: number): void {
+    this.dialog.open(ComprasDetalleComponent, {
+      data: {
+        idCompra: idCompra
+      }
+    });
+  }
 }

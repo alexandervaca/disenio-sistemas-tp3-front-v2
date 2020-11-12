@@ -28,10 +28,10 @@ export class ComprasComponent implements OnInit {
     return total;
   }
 
-  irAlDetalle(compra: Compra): void {
+  irAlDetalle(idCompra: number): void {
     this.dialog.open(ComprasDetalleComponent, {
       data: {
-        compra: compra
+        idCompra: idCompra
       }
     });
   }

@@ -11,22 +11,30 @@ import { CompraProducto } from 'src/shared/models/domain/compraProducto';
 })
 export class ComprasDetalleComponent implements OnInit {
 
-  compra: Compra;
+  idCompra: number;
   comprasProducto: CompraProducto[];
 
   constructor(public dialogRef: MatDialogRef<ComprasDetalleComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any, private comprasService: ComprasService) {
-    this.compra = data.compra;
+      this.idCompra = data.idCompra;
   }
 
   ngOnInit() {
-    this.getComprasProductos(this.compra.idCompra);
+    this.getComprasProductos();
   }
 
-  getComprasProductos(idCompra: number): void {
-    this.comprasService.getComprasDetalle(idCompra).subscribe(elem => {
+  getComprasProductos(): void {
+    this.comprasService.getComprasDetalle(this.idCompra).subscribe(elem => {
       this.comprasProducto = elem.comprasProducto;
-      //this.dialogRef.close();
     });
   }
+
+  get total(): number {
+    let total = 0;
+    this.comprasProducto.forEach(elem => {
+      total += (elem.precio * elem.cantProducto);
+    });
+    return total;
+  }
+
 }
